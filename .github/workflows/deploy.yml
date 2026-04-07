@@ -1,18 +1,31 @@
 name: Deploy to GitHub Pages
+
 on:
   push:
-    branches: [main] # 当你推送到 main 分支时触发
+    branches: [main] # 如果你的主分支叫 master，请把 main 改成 master
+
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-      - run: npm install
-      - run: npm run build # 这里执行打包
+          node-version: 20 # 这里必须是 20 或更高
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist # 打包后的文件夹名，Vue/Vite通常是dist
+          folder: dist # Vite 打包后生成的文件夹名字
