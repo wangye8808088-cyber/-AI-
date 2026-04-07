@@ -4,22 +4,26 @@ import { resolve } from "path";
 
 // https://vite.dev/config/
 export default defineConfig({
+  // 【关键修复 1】解决 GitHub Pages 部署白屏问题
+  // 设置为 './' 后，打包后的资源将使用相对路径引用
+  base: "./",
+
   plugins: [vue()],
   resolve: {
     alias: {
-      // __dirname 是当前文件所在目录的绝对路径（根目录）
-      // src 是项目根目录下的 src 目录
-      // resolve(__dirname, "src") 是将 __dirname 与 src 目录拼接起来，得到项目根目录下的 src 目录的绝对路径
       "@": resolve(__dirname, "src"),
     },
   },
+
+  // 【重要提示】
+  // server 中的 proxy 仅在本地开发（npm run dev）时有效。
+  // 一旦部署到 GitHub Pages（静态环境），这里的代理设置就会失效！
   server: {
     proxy: {
-      '/api' : {
-        target: 'http://159.75.169.224:1235',
+      "/api": {
+        target: "http://159.75.169.224:1235",
         changeOrigin: true,
-
-      }
-    }
-  }
+      },
+    },
+  },
 });
