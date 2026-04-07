@@ -1,9 +1,13 @@
 import axios from "axios";
 import { ElMessage } from "element-plus";
 
+const API_BASE_URL = import.meta.env.DEV
+  ? "/api"
+  : "http://159.75.169.224:1235/api";
+
 // 创建axios实例
 const service = axios.create({
-  baseURL: "/api", //请求的前缀
+  baseURL: API_BASE_URL, // 开发走代理，生产直连后端
   timeout: 5000, //请求的超时事件
 });
 
@@ -38,9 +42,9 @@ service.interceptors.response.use(
           // 清除登录信息
           localStorage.removeItem('token')
           // 清除用户信息
-          localStorage.removeItem('useInfo')
+          localStorage.removeItem('userInfo')
           // 跳转到登录页
-          window.location.href = '/auth/login'
+          window.location.href = '/#/auth/login'
         } else {
           ElMessage.error(data.msg || "登录过期，请重新登录");
           return Promise.reject('网络请求失败...')
