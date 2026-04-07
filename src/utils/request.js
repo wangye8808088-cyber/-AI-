@@ -1,9 +1,9 @@
 import axios from "axios";
 import { ElMessage } from "element-plus";
 
-const API_BASE_URL = import.meta.env.DEV
-  ? "/api"
-  : "http://159.75.169.224:1235/api";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.DEV ? "/api" : "https://your-api-domain.com/api");
 
 // 创建axios实例
 const service = axios.create({
@@ -44,7 +44,7 @@ service.interceptors.response.use(
           // 清除用户信息
           localStorage.removeItem('userInfo')
           // 跳转到登录页
-          window.location.href = '/#/auth/login'
+          window.location.href = '/auth/login'
         } else {
           ElMessage.error(data.msg || "登录过期，请重新登录");
           return Promise.reject('网络请求失败...')
@@ -55,6 +55,13 @@ service.interceptors.response.use(
   },
   // 对响应错误做点什么
   (error) => {
+    if (
+      typeof window !== "undefined" &&
+      window.location.protocol === "https:" &&
+      String(API_BASE_URL).startsWith("http://")
+    ) {
+      ElMessage.error("当前站点为 HTTPS，接口也必须使用 HTTPS");
+    }
     return Promise.reject(error);
   },
 );

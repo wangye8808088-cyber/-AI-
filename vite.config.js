@@ -4,9 +4,8 @@ import { resolve } from "path";
 
 // https://vite.dev/config/
 export default defineConfig({
-  // 【关键修复 1】解决 GitHub Pages 部署白屏问题
-  // 设置为 './' 后，打包后的资源将使用相对路径引用
-  base: "./",
+  // Vercel 使用根路径部署
+  base: "/",
 
   plugins: [vue()],
   resolve: {
