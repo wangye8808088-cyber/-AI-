@@ -1,0 +1,87 @@
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  /* font-size:100%; */
+  vertical-align: baseline;
+  background: transparent;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+:root {
+  --hs-bg: #fdf8f3;
+  --hs-surface: #fff7ee;
+  --hs-card: #ffffff;
+  --hs-primary: #2f6bff;
+   --hs-primary-soft: #e3ebff;
+  --hs-accent-yellow: #ffd64d;
+  --hs-accent-orange: #ff8a3d;
+  --hs-accent-pink: #ffc7de;
+  --hs-text-primary: #2d2a26;
+  --hs-text-secondary: #6d655d;
+  --hs-border-subtle: rgba(45, 42, 38, 0.08);
+  --hs-radius-xl: 36px;
+  --hs-radius-lg: 24px;
+  --hs-radius-md: 18px;
+  --hs-radius-pill: 999px;
+  --hs-space-2: 8px;
+  --hs-space-3: 12px;
+  --hs-space-4: 16px;
+  --hs-space-5: 20px;
+  --hs-space-6: 24px;
+  --hs-space-8: 32px;
+  --hs-space-10: 40px;
+  --hs-shadow-soft: 0 10px 25px rgba(65, 45, 10, 0.08);
+  --hs-shadow-card: 0 16px 40px rgba(65, 45, 10, 0.12);
+}
+
+body {
+  height: 100vh;
+  background-color: var(--hs-bg);
+  color: var(--hs-text-primary);
+  font-family:
+    "Avenir Next",
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Microsoft YaHei",
+    sans-serif;
+  line-height: 1.5;
+}
+
+#app {
+  height: 100%;
+}
+
+.el-header {
+  height: 50px !important;
+  padding: 0 !important;
+  box-shadow: 0 2px 10px rgba(45, 42, 38, 0.06);
+  border-bottom: 1px solid transparent;
+}
+
+.pagination-info {
+  padding: 10px 0;
+  background-color: var(--hs-card);
+  .el-pagination {
+    justify-content: end;
+  }
+}
