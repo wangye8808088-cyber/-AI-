@@ -1,9 +1,7 @@
 import axios from "axios";
 import { ElMessage } from "element-plus";
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL ||
-  (import.meta.env.DEV ? "/api" : "https://your-api-domain.com/api");
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "/api";
 
 // 创建axios实例
 const service = axios.create({
